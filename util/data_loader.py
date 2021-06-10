@@ -115,8 +115,8 @@ class FewShotNERDataset(data.Dataset):
 
     def __getraw__(self, sample):
         # get tokenized word list, attention mask, text mask (mask [CLS], [SEP] as well)
-        word, mask, text_mask = self.encoder.tokenize(sample.words)
-        tag = self.__split_tag__(sample.normalized_tags)
+        word, mask, text_mask, tag = self.encoder.tokenize(sample.words, sample.normalized_tags)
+        # tag = self.__split_tag__(sample.normalized_tags)
         return word, mask, text_mask, tag
 
     def __additem__(self, index, d, word, mask, text_mask, label):
